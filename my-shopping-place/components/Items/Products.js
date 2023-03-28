@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { View, Text, ScrollView, ActivityIndicator } from "react-native";
-import { db } from "../config/config";
+import { View, Text, ScrollView, ActivityIndicator, Image } from "react-native";
+import { db } from "../Service/Service";
 import { ref, onValue } from "firebase/database";
 import Cards from "../Card/Cards";
 
@@ -19,7 +19,13 @@ function Products() {
     <ScrollView>
       {productKeys.length > 0 ? (
         productKeys.map((key) => (
-          <Text>{product[key].name}</Text>
+          <Cards
+            key={key}
+            name={product[key].name}
+            description={product[key].des}
+            image={product[key].img}
+            price={product[key].price}
+          />
         ))
       ) : (
         <View>

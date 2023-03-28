@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Cards from './components/Card/Cards';
-import Products from './components/Items/Products';
+import { NavigationContainer } from "@react-navigation/native";
+import MyTabs from "./components/BottomNavigator/BottomNavigator";
 
 export default function App() {
   return (
-    <Products/>
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   );
 }
