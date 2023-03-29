@@ -1,11 +1,32 @@
 import { useState } from "react";
 import { Card, Title, Text, Button } from "react-native-paper";
-import { StyleSheet, Alert } from "react-native";
+import {
+  StyleSheet,
+  Alert,
+  TouchableWithoutFeedback,
+} from "react-native";
+import ImageModal from "../Modal/ImageModal";
 
 function Cards({ name, description, image, price }) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <Card style={styles.CardItem}>
-      <Card.Cover source={{ uri: image }} style={styles.CardImage} />
+      <TouchableWithoutFeedback onPress={openModal}>
+        <Card.Cover
+          source={{ uri: image }}
+          style={styles.CardImage}
+          onPress={openModal}
+        />
+      </TouchableWithoutFeedback>
       <Card.Content>
         <Title>{name}</Title>
         <Text>{description}</Text>
@@ -16,6 +37,12 @@ function Cards({ name, description, image, price }) {
           Add to Basket
         </Button>
       </Card.Actions>
+      <ImageModal
+        visible={modalVisible}
+        image={image}
+        onClose={closeModal}
+        title={name}
+      />
     </Card>
   );
 }
@@ -27,7 +54,22 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   CardImage: {
-    height: 100,
-    width: "auto",
+    height: 250,
+    width: "100%",
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalImage: {
+    height: 300,
+    width: 300,
+  },
+  modalCloseButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    borderRadius: 25,
   },
 });
