@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { View, Text, ScrollView } from "react-native";
-import { db } from "../Service/Service";
-import { ref, onValue } from "firebase/database";
-import Cards from "../Card/Cards";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { ref, onValue } from "firebase/database";
+
+import { db } from "../Service/Service";
+import Cards from "../Card/Cards";
 
 function Products() {
   const [product, setProduct] = useState({});

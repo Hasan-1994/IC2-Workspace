@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
+
 import Products from "../Items/Products";
-import Basket from "../Items/Basket/Basket";
+import Basket from "../Basket/Basket";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,8 +34,6 @@ function MyTabs() {
           } else if (route.name === "Basket") {
             iconName = "ios-basket";
           }
-
-          // You can return any component that you like here!
           return <Ionicons name={iconName} size={30} color={"#e03131"} />;
         },
       })}

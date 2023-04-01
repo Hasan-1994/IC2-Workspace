@@ -1,5 +1,3 @@
-import { REMOVE_FROM_BASKET } from "./actions";
-
 const initialState = {
   basketItems: [],
 };

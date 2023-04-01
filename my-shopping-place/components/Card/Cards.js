@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Card, Title, Text, Button } from "react-native-paper";
 import { TouchableWithoutFeedback } from "react-native";
 import { useDispatch } from "react-redux";
-import { addToBasket } from "../Redux/actions";
 import { Ionicons } from "@expo/vector-icons";
 
+import { addToBasket } from "../Redux/actions";
 import { styles } from "./Cards.module";
 import ImageModal from "../Modal/ImageModal";
 
@@ -23,7 +23,6 @@ function Cards({ id, name, description, image, price }) {
   const handleAddToBasket = () => {
     const item = { id: parseInt(id), name, description, image, price };
     dispatch(addToBasket(item));
-    console.log(addToBasket(item));
   };
 
   return (
@@ -51,6 +50,7 @@ function Cards({ id, name, description, image, price }) {
         image={image}
         onClose={closeModal}
         title={name}
+        description={description}
       />
     </Card>
   );

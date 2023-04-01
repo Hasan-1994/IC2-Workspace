@@ -1,10 +1,12 @@
 import React from "react";
 import { View, TouchableOpacity, Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromBasket } from "../../Redux/actions";
 import { Text } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+
 import { styles } from "./Basket.module";
+import { removeFromBasket } from "../Redux/actions";
+import CheckoutButton from "./CheckoutButton";
 
 function Basket() {
   const basketItems = useSelector((state) => state.basket.basketItems);
@@ -24,7 +26,7 @@ function Basket() {
       {basketItems.length > 0 ? (
         <View>
           <View style={styles.itemsContainer}>
-            <Text style={styles.title}>Warenkorb</Text>
+            <Text style={styles.title}>Basket</Text>
             {basketItems.map((item, index) => (
               <View key={index} style={styles.itemContainer}>
                 <Image source={{ uri: item.image }} style={styles.itemImage} />
@@ -48,16 +50,14 @@ function Basket() {
             ))}
           </View>
           <View style={styles.totalContainer}>
-            <Text style={styles.totalText}>Gesamt:</Text>
+            <Text style={styles.totalText}>Total:</Text>
             <Text style={styles.totalPrice}>{totalPrice},00 €</Text>
           </View>
-          <TouchableOpacity style={styles.checkoutButton}>
-            <Text style={styles.checkoutButtonText}>Checkout</Text>
-          </TouchableOpacity>
+          <CheckoutButton />
         </View>
       ) : (
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>Ihr Warenkorb ist leer.</Text>
+          <Text style={styles.emptyText}>Your Basket is empty.</Text>
         </View>
       )}
     </View>
