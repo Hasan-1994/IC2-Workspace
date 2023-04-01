@@ -30,9 +30,14 @@ function Products() {
           />
         ))
       ) : (
-        <View>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <ActivityIndicator
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
             animating={true}
             size={"large"}
             color={MD2Colors.red800}
