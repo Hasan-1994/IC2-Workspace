@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { View, Text, ScrollView, ActivityIndicator, Image } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { db } from "../Service/Service";
 import { ref, onValue } from "firebase/database";
 import Cards from "../Card/Cards";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 function Products() {
   const [product, setProduct] = useState({});
@@ -30,7 +31,12 @@ function Products() {
         ))
       ) : (
         <View>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+            animating={true}
+            size={"large"}
+            color={MD2Colors.red800}
+          />
           <Text>Loading Product...</Text>
         </View>
       )}

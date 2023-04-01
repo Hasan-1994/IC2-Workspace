@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, Title, Text, Button } from "react-native-paper";
 import { StyleSheet, Alert, TouchableWithoutFeedback } from "react-native";
 import { useDispatch } from "react-redux";
-import { addToBasket, ADD_TO_BASKET } from "../actions";
+import { addToBasket, ADD_TO_BASKET } from "../Redux/actions";
 
 import ImageModal from "../Modal/ImageModal";
 

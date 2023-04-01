@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromBasket } from "../actions";
-import Cards from "../Card/Cards";
-import { Card } from "react-native-paper";
+import { removeFromBasket } from "../Redux/actions";
+import { Button, Text } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
 
 function Basket() {
   const basketItems = useSelector((state) => state.basket.basketItems);
@@ -26,15 +26,15 @@ function Basket() {
         <View style={{ flex: 1 }}>
           {basketItems.map((item) => (
             <View key={item.id}>
-              <Text>{item.name}</Text>
-              <Text>{item.description}</Text>
-              <Text>{item.quantity} x</Text>
-              <Text>{item.price},00€</Text>
+              <Text variant="titleMedium">{item.name}</Text>
+              <Text variant="bodyMedium">{item.description}</Text>
               <View>
-                <Button
-                  title="Remove"
-                  onPress={() => handleRemoveFromBasket(item.id)}
-                />
+                <Text>
+                  {item.quantity} x {item.price},00€
+                </Text>
+                <Button onPress={() => handleRemoveFromBasket(item.id)}>
+                  <Ionicons name={"trash"} color={"red"} />
+                </Button>
               </View>
             </View>
           ))}

@@ -3,7 +3,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
 import Products from "../Items/Products";
 import Basket from "../Items/Basket";
-import { Button } from "react-native-paper";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +25,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: () => {
           let iconName;
 
           if (route.name === "MyShoppingPlace") {
@@ -36,7 +35,7 @@ function MyTabs() {
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={30} color={"red"} />;
         },
       })}
       tabBarOptions={{
@@ -44,8 +43,27 @@ function MyTabs() {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="MyShoppingPlace" component={ShopingScreen} />
-      <Tab.Screen name="Basket" component={BasketScreen} />
+      <Tab.Screen
+        name="MyShoppingPlace"
+        component={ShopingScreen}
+        options={{
+          headerTintColor: "red",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Basket"
+        component={BasketScreen}
+        options={{
+          title: "MyBasket",
+          headerTintColor: "red",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }
