@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Card, Title, Text, Button } from "react-native-paper";
-import {
-  StyleSheet,
-  Alert,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { StyleSheet, Alert, TouchableWithoutFeedback } from "react-native";
+import { useDispatch } from "react-redux";
+import { addToBasket, ADD_TO_BASKET } from "../actions";
+
 import ImageModal from "../Modal/ImageModal";
 
-function Cards({ name, description, image, price }) {
+function Cards({ id, name, description, image, price }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setModalVisible(true);
@@ -18,8 +18,14 @@ function Cards({ name, description, image, price }) {
     setModalVisible(false);
   };
 
+  const handleAddToBasket = () => {
+    const item = { id: parseInt(id), name, description, image, price };
+    dispatch(addToBasket(item));
+    console.log(addToBasket(item));
+  };
+
   return (
-    <Card style={styles.CardItem}>
+    <Card style={styles.CardItem} key={id}>
       <TouchableWithoutFeedback onPress={openModal}>
         <Card.Cover
           source={{ uri: image }}
@@ -33,9 +39,7 @@ function Cards({ name, description, image, price }) {
         <Text>{price},00€</Text>
       </Card.Content>
       <Card.Actions>
-        <Button onPress={() => Alert.alert("Header", "Subtitle")}>
-          Add to Basket
-        </Button>
+        <Button onPress={handleAddToBasket}>Add to Basket</Button>
       </Card.Actions>
       <ImageModal
         visible={modalVisible}

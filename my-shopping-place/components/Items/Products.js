@@ -20,7 +20,8 @@ function Products() {
       {productKeys.length > 0 ? (
         productKeys.map((key) => (
           <Cards
-            key={key}
+            id={product[key].id}
+            key={product[key].id}
             name={product[key].name}
             description={product[key].des}
             image={product[key].img}
